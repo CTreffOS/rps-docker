@@ -1,19 +1,23 @@
 RPS Docker Set-Up
 =================
 
-Building a fc21 based Docker image containing the RPS server:
+Building Docker image containing the RPS server:
 
-    docker build -t rps/server:test server
+    docker build -t rockpaperscissors/server server
+
+Building Docker image containing the RPS player:
+
+    docker build -t rockpaperscissors/player player
 
 
-Running a Docker container, port 5001 exposed to host:
+Running a Docker container, port 4441 exposed to host:
 
-    docker run --name rps-server -p 5001:5001 rps:test /rps/rps-server.py
+    docker run --name rps-server -p 4441:4441 rockpaperscissors/server /rps/start.sh
 
 
 Start client linked to server:
 
-    docker run -i -t --name rps-client --link rps-server:rps-server fedora:latest /bin/bash
+    docker run -i -t --name rps-player-one --link rps-server:rps-server fedora:latest /bin/bash
 
     # Example for accessing the server:
 	 [...]%> yum install curl
@@ -25,4 +29,9 @@ Removing Docker Container:
     docker rm rps-server
 
 
+Names
+-----
 
+ - Server Docker image: rockpaperscissors/server
+ - Test player Docker image: rockpaperscissors/player
+ - Server link name: rps-server
