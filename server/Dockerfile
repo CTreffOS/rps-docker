@@ -12,18 +12,17 @@ RUN apt-get update
 
 # Install missing packages
 RUN apt-get install -y git
-RUN apt-get install -y python-flask
 RUN apt-get install -y gunicorn
 RUN apt-get install -y python-redis
 RUN apt-get install -y python-flask
 RUN apt-get install -y redis-server
 
 # Get server from github
-RUN git clone https://github.com/CTreffOS/rps-server.git /rps
+RUN git clone --depth 1 https://github.com/CTreffOS/rps-server.git /rps
 
 ##################### INSTALLATION END #####################
 
 # Expose the default port
 EXPOSE 4441
 
-CMD ["sh", "rps/start.sh", "1", "2"]
+CMD ["/rps/start.sh", "1", "2"]
