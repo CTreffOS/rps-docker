@@ -1,5 +1,5 @@
 ############################################################
-# Dockerfile for 31c3 RPS Challenge: Test Client
+# Dockerfile for 31c3 RPS Challenge: Client Mode 1
 # Based on Debian
 ############################################################
 
@@ -11,12 +11,8 @@ FROM debian:jessie
 RUN apt-get update
 
 # Install missing packages
-RUN apt-get install -y curl python
-RUN mkdir /rps
-ADD start.sh /rps/start.sh
-RUN curl https://raw.githubusercontent.com/CTreffOS/rps-server/master/testplayer.py -o /rps/testplayer.py
-RUN sed -i 's/localhost/rps-server/' /rps/testplayer.py
-RUN chmod u+x /rps/start.sh
+RUN apt-get install -y python python-configobj git
+RUN git clone --depth 1 https://github.com/CTreffOS/rps-random-detect.git /rps
 
 ##################### INSTALLATION END #####################
 
