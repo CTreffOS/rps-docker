@@ -29,6 +29,13 @@ Removing Docker Container:
     docker rm rps-server
 
 
+Build Image fron Default Docker Container
+-----------------------------------------
+
+    cp .../rps.tar.gz default/rps.tar.gz
+    docker build -t rockpaperscissors/submission_ID default
+
+
 Names
 -----
 
